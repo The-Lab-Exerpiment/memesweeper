@@ -4,7 +4,9 @@ Minefield::Minefield(const int _mines, Graphics& _gfx) :
 	rng(std::random_device()()),
 	fieldRange(0, width* height - 1),
 	gfx(_gfx) {
-	mines = _mines;
+	for (int mine = 0;mine < _mines;mine++) {
+		SpawnMine();
+	}
 }
 
 void Minefield::Draw() {

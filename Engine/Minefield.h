@@ -29,8 +29,6 @@ private:
 
 	Graphics& gfx;
 
-	int mines;
-
 	static constexpr int size = 10;
 
 	static constexpr int width = 15;
