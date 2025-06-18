@@ -65,13 +65,30 @@ void Minefield::Tile::Reveal() {
 	}
 }
 
+void Minefield::Tile::Flag() {
+	if (!(state == State::Flagged)) {
+		state = State::Flagged;
+	}
+}
+
 void Minefield::RevealOnClick(Vei2& _position) {
 	Vei2 gridCoords = GridPos(_position);
-	if (gridCoords.x < width && gridCoords.y < height) {
+	if (BoundaryCheck(_position)) {
 		tiles[gridCoords.x + gridCoords.y * width].Reveal();
+	}
+}
+
+void Minefield::FlagOnClick(Vei2& _position) {
+	Vei2 gridCoords = GridPos(_position);
+	if (BoundaryCheck(_position)) {
+		tiles[gridCoords.x + gridCoords.y * width].Flag();
 	}
 }
 
 Vei2 Minefield::GridPos(const Vei2& _position) const {
 	return _position / SpriteCodex::tileSize;
+}
+
+bool Minefield::BoundaryCheck(Vei2& _position) {
+	return GridPos(_position).x < width && GridPos(_position).y < height;
 }

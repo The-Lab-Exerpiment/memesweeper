@@ -39,8 +39,13 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+	Vei2 mousePos(wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
+
 	if (wnd.mouse.LeftIsPressed()) {
-		minefield.RevealOnClick(Vei2(wnd.mouse.GetPosX(), wnd.mouse.GetPosY()));
+		minefield.RevealOnClick(mousePos);
+	}
+	if (wnd.mouse.RightIsPressed()) {
+		minefield.FlagOnClick(mousePos);
 	}
 }
 

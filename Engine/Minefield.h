@@ -13,6 +13,9 @@ public:
 	void Draw();
 
 	void RevealOnClick(Vei2& _position);
+	void FlagOnClick(Vei2& _position);
+
+	bool BoundaryCheck(Vei2& _positon);
 
 private:
 	class Tile {
@@ -25,9 +28,12 @@ private:
 
 		bool IsMine() const;
 		void SetMine();
+
 		State GetState() const;
 		void SetState(State& _state);
+
 		void Reveal();
+		void Flag();
 
 	private:
 		State state = State::Hidden;
