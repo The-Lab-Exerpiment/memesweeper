@@ -24,6 +24,9 @@ void Minefield::Draw() {
 				break;
 			case Tile::State::Revealed:
 				if (tiles[x + y * width].IsMine()) {
+					SpriteCodex::DrawTileBomb(location, gfx);
+				}
+				else {
 					SpriteCodex::DrawTile0(location, gfx);
 				}
 			}
