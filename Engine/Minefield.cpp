@@ -64,3 +64,14 @@ void Minefield::Tile::Reveal() {
 		state = State::Revealed;
 	}
 }
+
+void Minefield::RevealOnClick(Vei2& _position) {
+	Vei2 gridCoords = GridPos(_position);
+	if (gridCoords.x < width && gridCoords.y < height) {
+		tiles[gridCoords.x + gridCoords.y * width].Reveal();
+	}
+}
+
+Vei2 Minefield::GridPos(const Vei2& _position) const {
+	return _position / SpriteCodex::tileSize;
+}

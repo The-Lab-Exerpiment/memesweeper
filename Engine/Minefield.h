@@ -9,7 +9,10 @@ class Minefield {
 public:
 	Minefield(const int _mines, Graphics& _gfx);
 	void SpawnMine();
+
 	void Draw();
+
+	void RevealOnClick(Vei2& _position);
 
 private:
 	class Tile {
@@ -39,4 +42,6 @@ private:
 	static constexpr int width = 15;
 	static constexpr int height = 10;
 	Tile tiles[width * height];
+
+	Vei2 GridPos(const Vei2& _position) const;
 };
