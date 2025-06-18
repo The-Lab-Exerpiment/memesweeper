@@ -33,6 +33,8 @@ private:
 		void SetState(State& _state);
 
 		void Reveal();
+
+		bool IsFlagged();
 		void Flag();
 
 	private:
