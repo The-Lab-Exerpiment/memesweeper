@@ -14,14 +14,18 @@ void Minefield::Draw() {
 
 	for (int x = 0;x < width;x++) {
 		for (int y = 0;y < height;y++) {
+			Vei2 location(x * SpriteCodex::tileSize, y * SpriteCodex::tileSize);
 
 			switch (tiles[x + y * width].GetState()) {
-
 			case Tile::State::Flagged:
-				SpriteCodex::DrawTileFlag(Vei2(x * SpriteCodex::tileSize, y * SpriteCodex::tileSize), gfx);
+				SpriteCodex::DrawTileFlag(location, gfx);
 			case Tile::State::Hidden:
-				SpriteCodex::DrawTileButton(Vei2(x * SpriteCodex::tileSize, y * SpriteCodex::tileSize), gfx);
+				SpriteCodex::DrawTileButton(location, gfx);
 				break;
+			case Tile::State::Revealed:
+				if (tiles[x + y * width].IsMine()) {
+					SpriteCodex::DrawTile0(location, gfx);
+				}
 			}
 		}
 	}
