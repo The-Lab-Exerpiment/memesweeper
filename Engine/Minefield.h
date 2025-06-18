@@ -33,8 +33,6 @@ private:
 
 	Graphics& gfx;
 
-	static constexpr int size = 10;
-
 	static constexpr int width = 40;
 	static constexpr int height = 10;
 	Tile tiles[width * height];

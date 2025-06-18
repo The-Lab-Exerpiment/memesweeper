@@ -16,9 +16,9 @@ void Minefield::Draw() {
 			switch (tiles[x + y * width].GetState()) {
 
 			case Tile::State::Flagged:
-				SpriteCodex::DrawTileFlag(Vei2(x, y), gfx);
+				SpriteCodex::DrawTileFlag(Vei2(16 * x, 16 * y), gfx);
 			case Tile::State::Hidden:
-				SpriteCodex::DrawTileButton(Vei2(x, y), gfx);
+				SpriteCodex::DrawTileButton(Vei2(16 * x, 16 * y), gfx);
 				break;
 			}
 		}
