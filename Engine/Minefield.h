@@ -24,6 +24,7 @@ private:
 		void SetMine();
 		State GetState() const;
 		void SetState(State& _state);
+		void Reveal();
 
 	private:
 		State state = State::Hidden;

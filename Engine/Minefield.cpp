@@ -58,3 +58,9 @@ Minefield::Tile::State Minefield::Tile::GetState() const {
 void Minefield::Tile::SetState(State& _state) {
 	state = _state;
 }
+
+void Minefield::Tile::Reveal() {
+	if (!(state == State::Revealed)) {
+		state = State::Revealed;
+	}
+}
