@@ -10,12 +10,16 @@ Minefield::Minefield(const int _mines, Graphics& _gfx) :
 }
 
 void Minefield::Draw() {
-	for (int tile = 0;tile < width * height;tile++) {
-		if (tiles[tile].IsMine()) {
-			for (int x = 0;x < size;x++) {
-				for (int y = 0;y < size;y++) {
-					gfx.PutPixel(tile % width * size + x, tile / width * size + y, Color(255, 0, 0));
-				}
+	for (int x = 0;x < width;x++) {
+		for (int y = 0;y < height;y++) {
+
+			switch (tiles[x + y * width].GetState()) {
+
+			case Tile::State::Flagged:
+				SpriteCodex::DrawTileFlag(Vei2(x, y), gfx);
+			case Tile::State::Hidden:
+				SpriteCodex::DrawTileButton(Vei2(x, y), gfx);
+				break;
 			}
 		}
 	}
@@ -25,7 +29,7 @@ void Minefield::SpawnMine() {
 	int mineTile;
 	do {
 		mineTile = fieldRange(rng);
-	} while (!tiles[mineTile].IsMine());
+	} while (tiles[mineTile].IsMine());
 	tiles[mineTile].SetMine();
 
 }
@@ -36,4 +40,8 @@ void Minefield::Tile::SetMine() {
 
 bool Minefield::Tile::IsMine() const {
 	return isMine;
+}
+
+Minefield::Tile::State Minefield::Tile::GetState() {
+	return state;
 }
