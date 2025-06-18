@@ -42,6 +42,10 @@ bool Minefield::Tile::IsMine() const {
 	return isMine;
 }
 
-Minefield::Tile::State Minefield::Tile::GetState() {
+Minefield::Tile::State Minefield::Tile::GetState() const {
 	return state;
+}
+
+void Minefield::Tile::SetState(State& _state) {
+	state = _state;
 }

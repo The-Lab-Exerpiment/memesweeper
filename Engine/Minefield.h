@@ -21,7 +21,8 @@ private:
 
 		bool IsMine() const;
 		void SetMine();
-		State GetState();
+		State GetState() const;
+		void SetState(State& _state);
 
 	private:
 		State state = State::Hidden;
@@ -33,7 +34,7 @@ private:
 
 	Graphics& gfx;
 
-	static constexpr int width = 40;
+	static constexpr int width = 15;
 	static constexpr int height = 10;
 	Tile tiles[width * height];
 };
