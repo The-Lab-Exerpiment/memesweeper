@@ -3,6 +3,7 @@
 #include "Vei2.h"
 #include "SpriteCodex.h"
 #include "Graphics.h"
+#include "RectI.h"
 
 class Minefield {
 public:

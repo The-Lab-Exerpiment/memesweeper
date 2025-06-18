@@ -10,15 +10,17 @@ Minefield::Minefield(const int _mines, Graphics& _gfx) :
 }
 
 void Minefield::Draw() {
+	gfx.DrawRect(0, 0, width * SpriteCodex::tileSize, height * SpriteCodex::tileSize, SpriteCodex::baseColor);
+
 	for (int x = 0;x < width;x++) {
 		for (int y = 0;y < height;y++) {
 
 			switch (tiles[x + y * width].GetState()) {
 
 			case Tile::State::Flagged:
-				SpriteCodex::DrawTileFlag(Vei2(16 * x, 16 * y), gfx);
+				SpriteCodex::DrawTileFlag(Vei2(x * SpriteCodex::tileSize, y * SpriteCodex::tileSize), gfx);
 			case Tile::State::Hidden:
-				SpriteCodex::DrawTileButton(Vei2(16 * x, 16 * y), gfx);
+				SpriteCodex::DrawTileButton(Vei2(x * SpriteCodex::tileSize, y * SpriteCodex::tileSize), gfx);
 				break;
 			}
 		}
