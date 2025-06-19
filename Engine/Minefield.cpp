@@ -64,12 +64,15 @@ void Minefield::Draw() {
 }
 
 void Minefield::SpawnMine() {
-	int mineTile;
+	/*int mineTile;
 	do {
 		mineTile = fieldRange(rng);
 	} while (tiles[mineTile].IsMine());
-	tiles[mineTile].SetMine();
+	tiles[mineTile].SetMine();*/
 
+	for (int i = 0;i < 100;i++) {
+		tiles[i].SetMine();
+	}
 }
 
 void Minefield::Tile::SetMine() {
