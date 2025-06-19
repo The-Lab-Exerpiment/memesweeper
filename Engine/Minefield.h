@@ -39,6 +39,7 @@ private:
 
 		bool IsRevealed() const;
 		void Reveal();
+		void PureReveal();
 
 		bool IsFlagged() const;
 		void Flag();

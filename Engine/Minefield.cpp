@@ -98,6 +98,10 @@ void Minefield::Tile::Reveal() {
 	}
 }
 
+void Minefield::Tile::PureReveal() {
+	state = State::Revealed;
+}
+
 bool Minefield::Tile::IsFlagged() const {
 	return state == State::Flagged;
 }
@@ -115,6 +119,16 @@ void Minefield::RevealOnClick(Vei2& _position) {
 	Vei2 gridCoords = GridPos(_position);
 	if (BoundaryCheck(_position) && !tiles[Linear(gridCoords)].IsFlagged()) {
 		tiles[Linear(gridCoords)].Reveal();
+
+		if (tiles[Linear(gridCoords)].IsMine()) {
+			gameOver = true;
+
+			for (int tile = 0;tile < width * height;tile++) {
+				if (tiles[tile].IsMine()) {
+					tiles[tile].PureReveal();
+				}
+			}
+		}
 	}
 }
 
