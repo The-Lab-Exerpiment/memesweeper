@@ -32,9 +32,10 @@ private:
 		State GetState() const;
 		void SetState(State& _state);
 
+		bool IsRevealed() const;
 		void Reveal();
 
-		bool IsFlagged();
+		bool IsFlagged() const;
 		void Flag();
 
 	private:
