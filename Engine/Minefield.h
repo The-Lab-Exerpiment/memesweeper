@@ -27,6 +27,7 @@ private:
 		};
 
 		int GetAdjacent() const;
+		void AddAdjacent();
 
 		bool IsMine() const;
 		void SetMine();
@@ -57,4 +58,5 @@ private:
 
 	Vei2 GridPos(const Vei2& _position) const;
 	int Linear(Vei2& _position) const;
+	void SetAllAdjacent();
 };

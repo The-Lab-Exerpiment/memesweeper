@@ -139,3 +139,20 @@ int Minefield::Linear(Vei2& _position) const {
 int Minefield::Tile::GetAdjacent() const {
 	return adjacent;
 }
+
+void Minefield::Tile::AddAdjacent() {
+	adjacent += 1;
+}
+
+void Minefield::SetAllAdjacent() {
+	for (int tile = 0;tile < width * height;tile++) {
+
+		for (int x = -1;x <= 1;x++) {
+			for (int y = -1; y <= 1; y++) {
+				if (tiles[tile + x + y * width].IsMine()) {
+					tiles[tile + x + y * width].AddAdjacent();
+				}
+			}
+		}
+	}
+}
