@@ -33,8 +33,6 @@ private:
 		void SetState(State& _state);
 
 		void Reveal();
-
-		bool isFlagged();
 		void Flag();
 
 	private:
@@ -52,5 +50,4 @@ private:
 	Tile tiles[width * height];
 
 	Vei2 GridPos(const Vei2& _position) const;
-	int GridToLinear(const Vei2& _position) const;
 };
