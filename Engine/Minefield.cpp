@@ -121,13 +121,7 @@ void Minefield::RevealOnClick(Vei2& _position) {
 		tiles[Linear(gridCoords)].Reveal();
 
 		if (tiles[Linear(gridCoords)].IsMine()) {
-			gameOver = true;
-
-			for (int tile = 0;tile < width * height;tile++) {
-				if (tiles[tile].IsMine()) {
-					tiles[tile].PureReveal();
-				}
-			}
+			SetGameOver();
 		}
 	}
 }
@@ -176,4 +170,14 @@ void Minefield::SetAllAdjacent() {
 
 bool Minefield::IsGameOver() const {
 	return gameOver;
+}
+
+void Minefield::SetGameOver() {
+	gameOver = true;
+
+	for (int tile = 0;tile < width * height;tile++) {
+		if (tiles[tile].IsMine()) {
+			tiles[tile].PureReveal();
+		}
+	}
 }
