@@ -16,6 +16,7 @@ public:
 	void RevealAll(Vei2& _position);
 	void FlagOnClick(Vei2& _position);
 
+	bool GridBoundaryCheck(Vei2& _position) const;
 	bool BoundaryCheck(Vei2& _positon);
 
 	bool IsGameOver() const;

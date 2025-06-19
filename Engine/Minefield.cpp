@@ -93,21 +93,20 @@ bool Minefield::Tile::IsRevealed() const {
 }
 
 void Minefield::Tile::Reveal() {
-	if (!(state == State::Revealed)) {
+	if (state != State::Revealed) {
 		state = State::Revealed;
 	}
 }
 
 void Minefield::RevealAll(Vei2& _position) {
 	if (tiles[Linear(_position)].IsBlank()) {
-		for (int x = -1;x <= 1;x++) {
-			for (int y = -1;y <= 1;y++) {
-				if (tiles[Linear(_position + Vei2(x, y))].GetState() != Tile::State::Revealed &&
-					tiles[Linear(_position + Vei2(x, y))].IsBlank()) {
-					tiles[Linear(_position + Vei2(x, y))].Reveal();
-					RevealAll(_position + Vei2(x, y));
+		for (int dx = -1;dx <= 1;dx++) {
+			for (int dy = -1;dy <= 1;dy++) {
+				Vei2 newPos = _position + Vei2(dx, dy);
+
+				if(GridBoundaryCheck(newPos)){
+					tiles[Linear(newPos)].Reveal();
 				}
-				tiles[Linear(_position + Vei2(x, y))].Reveal();
 			}
 		}
 	}
@@ -157,6 +156,11 @@ Vei2 Minefield::GridPos(const Vei2& _position) const {
 
 bool Minefield::BoundaryCheck(Vei2& _position) {
 	return GridPos(_position).x < width && GridPos(_position).y < height;
+}
+
+bool Minefield::GridBoundaryCheck(Vei2& _position) const {
+	return _position.x >= 0 && _position.y >= 0 &&
+		_position.x < width && _position.y < height;
 }
 
 int Minefield::Linear(Vei2& _position) const {
