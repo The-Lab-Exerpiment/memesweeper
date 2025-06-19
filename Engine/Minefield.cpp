@@ -65,6 +65,10 @@ void Minefield::Tile::Reveal() {
 	}
 }
 
+bool Minefield::Tile::IsFlagged() {
+	return state == State::Flagged;
+}
+
 void Minefield::Tile::Flag() {
 	if (!(state == State::Flagged)) {
 		state = State::Flagged;
@@ -73,7 +77,7 @@ void Minefield::Tile::Flag() {
 
 void Minefield::RevealOnClick(Vei2& _position) {
 	Vei2 gridCoords = GridPos(_position);
-	if (BoundaryCheck(_position)) {
+	if (BoundaryCheck(_position) && !tiles[gridCoords.x + gridCoords.y * width].IsFlagged()) {
 		tiles[gridCoords.x + gridCoords.y * width].Reveal();
 	}
 }
