@@ -53,4 +53,5 @@ private:
 	Tile tiles[width * height];
 
 	Vei2 GridPos(const Vei2& _position) const;
+	int Linear(Vei2& _position) const;
 };

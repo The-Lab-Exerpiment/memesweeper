@@ -81,15 +81,15 @@ void Minefield::Tile::Flag() {
 
 void Minefield::RevealOnClick(Vei2& _position) {
 	Vei2 gridCoords = GridPos(_position);
-	if (BoundaryCheck(_position) && !tiles[gridCoords.x + gridCoords.y * width].IsFlagged()) {
-		tiles[gridCoords.x + gridCoords.y * width].Reveal();
+	if (BoundaryCheck(_position) && !tiles[Linear(gridCoords)].IsFlagged()) {
+		tiles[Linear(gridCoords)].Reveal();
 	}
 }
 
 void Minefield::FlagOnClick(Vei2& _position) {
 	Vei2 gridCoords = GridPos(_position);
-	if (BoundaryCheck(_position) && !tiles[gridCoords.x + gridCoords.y * width].IsRevealed()) {
-		tiles[gridCoords.x + gridCoords.y * width].Flag();
+	if (BoundaryCheck(_position) && !tiles[Linear(gridCoords)].IsRevealed()) {
+		tiles[Linear(gridCoords)].Flag();
 	}
 }
 
@@ -99,4 +99,8 @@ Vei2 Minefield::GridPos(const Vei2& _position) const {
 
 bool Minefield::BoundaryCheck(Vei2& _position) {
 	return GridPos(_position).x < width && GridPos(_position).y < height;
+}
+
+int Minefield::Linear(Vei2& _position) const {
+	return _position.x + _position.y * width;
 }
