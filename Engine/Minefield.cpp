@@ -104,8 +104,9 @@ void Minefield::RevealAll(Vei2& _position) {
 			for (int dy = -1;dy <= 1;dy++) {
 				Vei2 newPos = _position + Vei2(dx, dy);
 
-				if(GridBoundaryCheck(newPos)){
+				if(GridBoundaryCheck(newPos)&&!tiles[Linear(newPos)].IsRevealed()) {
 					tiles[Linear(newPos)].Reveal();
+					RevealAll(newPos);
 				}
 			}
 		}
@@ -132,7 +133,6 @@ void Minefield::Tile::Flag() {
 void Minefield::RevealOnClick(Vei2& _position) {
 	Vei2 gridCoords = GridPos(_position);
 	if (BoundaryCheck(_position) && !tiles[Linear(gridCoords)].IsFlagged()) {
-		tiles[Linear(gridCoords)].Reveal();
 
 		if (tiles[Linear(gridCoords)].IsMine()) {
 			SetGameOver();
