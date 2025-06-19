@@ -7,6 +7,7 @@ Minefield::Minefield(const int _mines, Graphics& _gfx) :
 	for (int mine = 0;mine < _mines;mine++) {
 		SpawnMine();
 	}
+	SetAllAdjacent();
 }
 
 void Minefield::Draw() {
@@ -149,8 +150,10 @@ void Minefield::SetAllAdjacent() {
 
 		for (int x = -1;x <= 1;x++) {
 			for (int y = -1; y <= 1; y++) {
-				if (tiles[tile + x + y * width].IsMine()) {
-					tiles[tile + x + y * width].AddAdjacent();
+				if (tile + x + y * width >= 0 && tile + x + y * width < width * height) {
+					if (tiles[tile + x + y * width].IsMine()) {
+						tiles[tile].AddAdjacent();
+					}
 				}
 			}
 		}

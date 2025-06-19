@@ -44,7 +44,7 @@ private:
 	private:
 		State state = State::Hidden;
 		bool isMine = false;
-		int adjacent = 1;
+		int adjacent = 0;
 	};
 
 	std::mt19937 rng;
