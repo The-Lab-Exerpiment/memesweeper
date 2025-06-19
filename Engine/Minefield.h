@@ -59,8 +59,8 @@ private:
 
 	Graphics& gfx;
 
-	static constexpr int width = 15;
-	static constexpr int height = 10;
+	static constexpr int width = Graphics::ScreenWidth/SpriteCodex::tileSize;
+	static constexpr int height = Graphics::ScreenHeight/SpriteCodex::tileSize;
 	Tile tiles[width * height];
 
 	Vei2 GridPos(const Vei2& _position) const;
