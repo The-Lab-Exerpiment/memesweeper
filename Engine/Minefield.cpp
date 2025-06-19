@@ -111,6 +111,8 @@ void Minefield::RevealAll(Vei2& _position) {
 			}
 		}
 	}
+	
+	tiles[Linear(_position)].Reveal();
 }
 
 void Minefield::Tile::PureReveal() {
