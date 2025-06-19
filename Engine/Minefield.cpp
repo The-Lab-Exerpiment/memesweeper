@@ -27,7 +27,35 @@ void Minefield::Draw() {
 					SpriteCodex::DrawTileBomb(location, gfx);
 				}
 				else {
-					SpriteCodex::DrawTile0(location, gfx);
+					switch (tiles[x + y * width].GetAdjacent()) {
+					case 0:
+						SpriteCodex::DrawTile0(location, gfx);
+						break;
+					case 1:
+						SpriteCodex::DrawTile1(location, gfx);
+						break;
+					case 2:
+						SpriteCodex::DrawTile2(location, gfx);
+						break;
+					case 3:
+						SpriteCodex::DrawTile3(location, gfx);
+						break;
+					case 4:
+						SpriteCodex::DrawTile4(location, gfx);
+						break;
+					case 5:
+						SpriteCodex::DrawTile5(location, gfx);
+						break;
+					case 6:
+						SpriteCodex::DrawTile6(location, gfx);
+						break;
+					case 7:
+						SpriteCodex::DrawTile7(location, gfx);
+						break;
+					case 8:
+						SpriteCodex::DrawTile8(location, gfx);
+						break;
+					}
 				}
 			}
 		}
@@ -106,4 +134,8 @@ bool Minefield::BoundaryCheck(Vei2& _position) {
 
 int Minefield::Linear(Vei2& _position) const {
 	return _position.x + _position.y * width;
+}
+
+int Minefield::Tile::GetAdjacent() const {
+	return adjacent;
 }

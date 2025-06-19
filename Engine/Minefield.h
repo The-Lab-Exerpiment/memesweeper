@@ -26,6 +26,8 @@ private:
 			Revealed
 		};
 
+		int GetAdjacent() const;
+
 		bool IsMine() const;
 		void SetMine();
 
@@ -41,6 +43,7 @@ private:
 	private:
 		State state = State::Hidden;
 		bool isMine = false;
+		int adjacent = 1;
 	};
 
 	std::mt19937 rng;
