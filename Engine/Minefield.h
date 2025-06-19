@@ -13,6 +13,7 @@ public:
 	void Draw();
 
 	void RevealOnClick(Vei2& _position);
+	void RevealAll();
 	void FlagOnClick(Vei2& _position);
 
 	bool BoundaryCheck(Vei2& _positon);
@@ -43,6 +44,8 @@ private:
 
 		bool IsFlagged() const;
 		void Flag();
+
+		bool IsBlank() const;
 
 	private:
 		State state = State::Hidden;

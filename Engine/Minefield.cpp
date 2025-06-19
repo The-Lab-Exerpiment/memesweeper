@@ -98,6 +98,10 @@ void Minefield::Tile::Reveal() {
 	}
 }
 
+void Minefield::RevealAll() {
+
+}
+
 void Minefield::Tile::PureReveal() {
 	state = State::Revealed;
 }
@@ -122,6 +126,9 @@ void Minefield::RevealOnClick(Vei2& _position) {
 
 		if (tiles[Linear(gridCoords)].IsMine()) {
 			SetGameOver();
+		}
+		else {
+			RevealAll();
 		}
 	}
 }
@@ -180,4 +187,8 @@ void Minefield::SetGameOver() {
 			tiles[tile].PureReveal();
 		}
 	}
+}
+
+bool Minefield::Tile::IsBlank() const {
+	return adjacent == 0;
 }
