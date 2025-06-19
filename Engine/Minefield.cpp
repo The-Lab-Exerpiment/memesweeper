@@ -64,15 +64,11 @@ void Minefield::Draw() {
 }
 
 void Minefield::SpawnMine() {
-	/*int mineTile;
+	int mineTile;
 	do {
 		mineTile = fieldRange(rng);
 	} while (tiles[mineTile].IsMine());
-	tiles[mineTile].SetMine();*/
-
-	for (int i = 0;i < 100;i++) {
-		tiles[i].SetMine();
-	}
+	tiles[mineTile].SetMine();
 }
 
 void Minefield::Tile::SetMine() {
@@ -181,13 +177,18 @@ void Minefield::Tile::AddAdjacent() {
 }
 
 void Minefield::SetAllAdjacent() {
-	for (int tile = 0;tile < width * height;tile++) {
+	for (int x = 0;x < width;x++) {
+		for (int y = 0;y < height;y++) {
+			Vei2 position = Vei2(x, y);
 
-		for (int x = -1;x <= 1;x++) {
-			for (int y = -1; y <= 1; y++) {
-				if (tile + x + y * width >= 0 && tile + x + y * width < width * height) {
-					if (tiles[tile + x + y * width].IsMine()) {
-						tiles[tile].AddAdjacent();
+			for (int dx = -1;dx <= 1;dx++) {
+				for (int dy = -1;dy <= 1;dy++) {
+					Vei2 newPos = Vei2(x + dx, y + dy);
+
+					if (GridBoundaryCheck(newPos)) {
+						if (tiles[Linear(newPos)].IsMine()) {
+							tiles[Linear(position)].AddAdjacent();
+						}
 					}
 				}
 			}
