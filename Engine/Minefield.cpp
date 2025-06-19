@@ -77,6 +77,9 @@ void Minefield::Tile::Flag() {
 	if (!(state == State::Flagged)) {
 		state = State::Flagged;
 	}
+	else {
+		state = State::Hidden;
+	}
 }
 
 void Minefield::RevealOnClick(Vei2& _position) {
