@@ -159,3 +159,7 @@ void Minefield::SetAllAdjacent() {
 		}
 	}
 }
+
+bool Minefield::IsGameOver() const {
+	return gameOver;
+}

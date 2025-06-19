@@ -39,15 +39,17 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	while (!wnd.mouse.IsEmpty()) {
-		Vei2 mousePos(wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
-		const auto event = wnd.mouse.Read();
+	if (!minefield.IsGameOver()) {
+		while (!wnd.mouse.IsEmpty()) {
+			Vei2 mousePos(wnd.mouse.GetPosX(), wnd.mouse.GetPosY());
+			const auto event = wnd.mouse.Read();
 
-		if (event.GetType() == Mouse::Event::Type::LPress) {
-			minefield.RevealOnClick(mousePos);
-		}
-		if (event.GetType() == Mouse::Event::Type::RPress) {
-			minefield.FlagOnClick(mousePos);
+			if (event.GetType() == Mouse::Event::Type::LPress) {
+				minefield.RevealOnClick(mousePos);
+			}
+			if (event.GetType() == Mouse::Event::Type::RPress) {
+				minefield.FlagOnClick(mousePos);
+			}
 		}
 	}
 }

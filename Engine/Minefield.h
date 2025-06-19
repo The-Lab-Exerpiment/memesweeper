@@ -17,6 +17,8 @@ public:
 
 	bool BoundaryCheck(Vei2& _positon);
 
+	bool IsGameOver() const;
+
 private:
 	class Tile {
 	public:
@@ -59,4 +61,6 @@ private:
 	Vei2 GridPos(const Vei2& _position) const;
 	int Linear(Vei2& _position) const;
 	void SetAllAdjacent();
+
+	bool gameOver = false;
 };
